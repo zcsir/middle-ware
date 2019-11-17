@@ -1,4 +1,4 @@
-## 参考文章
+## 参考文章(部分转载)
 
 <b>【SpringBoot2基础教程】--> 【[GitHub点这里](https://github.com/cicadasmile/spring-boot-base)】          【[码云.点这里](https://gitee.com/cicadasmile/spring-boot-base)】</b><br/>
 
