@@ -45,6 +45,7 @@ public class ConsumerConfig {
                 consumer.subscribe(topicTag[0],topicTag[1]);
             }
             consumer.start();
+            LOG.info("消费端启动....");
         }catch (MQClientException e){
             e.printStackTrace();
         }

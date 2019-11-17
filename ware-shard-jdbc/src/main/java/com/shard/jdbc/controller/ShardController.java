@@ -3,6 +3,8 @@ package com.shard.jdbc.controller;
 import com.shard.jdbc.entity.TableOne;
 import com.shard.jdbc.entity.TableTwo;
 import com.shard.jdbc.service.ShardService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +12,8 @@ import javax.annotation.Resource;
 
 @RestController
 public class ShardController {
-
+    @Autowired
+    private RedisTemplate redisTemplate;
     @Resource
     private ShardService shardService ;
     /**
@@ -52,4 +55,8 @@ public class ShardController {
         return shardService.selectTwoByPhone(phone);
     }
 
+    @RequestMapping("/setKey/{key}/{value}")
+    public void selectTwoByPhone (@PathVariable("key") String key,@PathVariable("value") String value){
+        redisTemplate.opsForValue().set(key,value);
+    }
 }

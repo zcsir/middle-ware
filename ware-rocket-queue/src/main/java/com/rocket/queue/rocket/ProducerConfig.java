@@ -44,6 +44,7 @@ public class ProducerConfig {
         }
         try {
             producer.start();
+            LOG.info("生产端启动....");
         } catch (MQClientException e) {
             e.printStackTrace();
         }

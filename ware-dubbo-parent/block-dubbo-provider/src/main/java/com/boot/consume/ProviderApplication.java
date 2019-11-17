@@ -3,6 +3,7 @@ package com.boot.consume;
 import com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 /*
 [zk: localhost:2181(CONNECTED) 0] ls /
 [dubbo, zookeeper]
@@ -14,6 +15,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ProviderApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ProviderApplication.class,args) ;
+        SpringApplication.run(ProviderApplication.class, args);
     }
 }

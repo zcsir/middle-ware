@@ -4,8 +4,8 @@ spring:
     dataOne:
       type: com.alibaba.druid.pool.DruidDataSource
       druid:
-        driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/shard_one?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&useSSL=false
+        driverClassName: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/shard_one?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
         username: root
         password: 123
         initial-size: 10
@@ -27,8 +27,8 @@ spring:
     dataTwo:
       type: com.alibaba.druid.pool.DruidDataSource
       druid:
-        driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/shard_two?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&useSSL=false
+        driverClassName: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/shard_two?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
         username: root
         password: 123
         initial-size: 10
@@ -50,8 +50,8 @@ spring:
     dataThree:
       type: com.alibaba.druid.pool.DruidDataSource
       druid:
-        driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/shard_three?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&useSSL=false
+        driverClassName: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/shard_three?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
         username: root
         password: 123
         initial-size: 10

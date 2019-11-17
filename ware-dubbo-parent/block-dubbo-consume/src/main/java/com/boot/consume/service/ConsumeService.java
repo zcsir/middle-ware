@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class ConsumeService implements DubboService {
 
     @Reference
-    private DubboService dubboService ;
+    private DubboService dubboService;
 
     @Override
     public String getInfo(String param) {

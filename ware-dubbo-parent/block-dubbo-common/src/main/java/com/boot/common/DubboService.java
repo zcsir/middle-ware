@@ -1,9 +1,9 @@
 package com.boot.common;
 
 public interface DubboService {
-    String getInfo (String param) ;
+    String getInfo(String param);
 
-    UserEntity getUserInfo (UserEntity userEntity) ;
+    UserEntity getUserInfo(UserEntity userEntity);
 
-    String timeOut (Integer time) ;
+    String timeOut(Integer time);
 }

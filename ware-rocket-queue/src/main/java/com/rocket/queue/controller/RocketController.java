@@ -12,7 +12,7 @@ public class RocketController {
     @Resource
     private FeePlatMqService feePlatMqService ;
 
-    @RequestMapping("/sendMsg")
+    @RequestMapping("sendMsg/")
     public SendResult sendMsg (){
         String msg = "OpenAccount Msg";
         SendResult sendResult = null;
@@ -23,5 +23,6 @@ public class RocketController {
         }
         return sendResult ;
     }
+
 
 }

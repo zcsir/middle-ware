@@ -5,7 +5,9 @@ import com.boot.consume.service.ConsumeService;
 import com.boot.consume.service.VersionServiceImpl;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import javax.annotation.Resource;
+
 /*
 
 http://localhost:7008/getParam
@@ -19,23 +21,23 @@ http://localhost:7008/getUserInfo
 public class DubboController {
 
     @Resource
-    private ConsumeService consumeService ;
+    private ConsumeService consumeService;
     @Resource
-    private VersionServiceImpl versionService1 ;
+    private VersionServiceImpl versionService1;
     @Resource
-    private VersionServiceImpl versionService2 ;
+    private VersionServiceImpl versionService2;
 
     @RequestMapping("/getParam")
-    public String getParam (){
-        return consumeService.getInfo("知了...") ;
+    public String getParam() {
+        return consumeService.getInfo("知了...");
     }
 
     @RequestMapping("/getUserInfo")
-    public UserEntity getUserInfo (){
-        UserEntity userEntity = new UserEntity() ;
+    public UserEntity getUserInfo() {
+        UserEntity userEntity = new UserEntity();
         userEntity.setId(1);
         userEntity.setUserName("知了");
-        return consumeService.getUserInfo(userEntity) ;
+        return consumeService.getUserInfo(userEntity);
     }
 
     /**
@@ -43,8 +45,8 @@ public class DubboController {
      * com.alibaba.dubbo.remoting.TimeoutException
      */
     @RequestMapping("/timeOut")
-    public String timeOut (){
-        return consumeService.timeOut(2000) ;
+    public String timeOut() {
+        return consumeService.timeOut(2000);
     }
 
     /**
@@ -58,12 +60,12 @@ public class DubboController {
      * id="com.boot.common.VersionService" /> has been built.
      */
     @RequestMapping("/getVersion1")
-    public String getVersion1 (){
-        return versionService1.getVersion() ;
+    public String getVersion1() {
+        return versionService1.getVersion();
     }
 
     @RequestMapping("/getVersion2")
-    public String getVersion2 (){
-        return versionService2.version2() ;
+    public String getVersion2() {
+        return versionService2.version2();
     }
 }
