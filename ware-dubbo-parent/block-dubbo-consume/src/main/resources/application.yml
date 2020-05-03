@@ -14,5 +14,5 @@ dubbo:
   application:
     name: block-dubbo-consume
   registry:
-    address: 127.0.0.1:2181
+    address: 192.168.1.116:2181
     protocol: zookeeper

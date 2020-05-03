@@ -4,7 +4,10 @@ import com.elastic.search.model.RequestLog;
 import com.elastic.search.repository.RequestLogRepository;
 import com.elastic.search.service.RequestLogService;
 import com.elastic.search.util.DateUtil;
+import org.elasticsearch.action.search.ClearScrollRequest;
+import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.index.query.*;
+import org.elasticsearch.search.Scroll;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -84,8 +87,66 @@ public class RequestLogServiceImpl implements RequestLogService {
          QueryBuilder builder = QueryBuilders.boolQuery()
                 // .must(QueryBuilders.matchQuery("userName.keyword", "历张")) 搜索不到
                 .must(QueryBuilders.matchQuery("userName", "张三")) // 可以搜索
-                .must(QueryBuilders.matchQuery("orderNo", "20190613736278243"));
+                .must(QueryBuilders.matchQuery("orderNo", "201911141573739465653"));
         return requestLogRepository.search(builder) ;
     }
 
-}
+
+    /*public List<String> scroll(long lastTime,long nowTime,List<String> list){
+        //设定滚动时间间隔,60秒,不是处理查询结果的所有文档的所需时间
+        //游标查询的过期时间会在每次做查询的时候刷新，所以这个时间只需要足够处理当前批的结果就可以了
+        final Scroll scroll = new Scroll(TimeValue.timeValueSeconds(60));
+        SearchRequest searchRequest = new SearchRequest(INDEX);
+        searchRequest.scroll(scroll);
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        QueryBuilder queryBuilder = QueryBuilders
+                .boolQuery()
+                //查询条件在 两个日期范围
+                .must(QueryBuilders.rangeQuery("intercept_time").gte(lastTime).lte(nowTime));
+        //每个批次实际返回的数量
+        searchSourceBuilder.size(10000);
+        searchRequest.source(searchSourceBuilder);
+        SearchResponse searchResponse = null;
+        try {
+            searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+        } catch (IOException e) {
+            logger.error("获取数据错误1 ->", e);
+        }
+        assert searchResponse != null;
+        String scrollId;
+        do {
+            for (SearchHit hit : searchResponse.getHits().getHits()) {
+                Map<String, Object> sourceAsMap = hit.getSourceAsMap();
+                //获取需要数据
+                list.add(String.valueOf(sourceAsMap.get("xxx"));
+            }
+            //每次循环完后取得scrollId,用于记录下次将从这个游标开始取数
+            scrollId = searchResponse.getScrollId();
+            SearchScrollRequest scrollRequest = new SearchScrollRequest(scrollId);
+            scrollRequest.scroll(scroll);
+            try {
+                //进行下次查询
+                searchResponse = client.scroll(scrollRequest, RequestOptions.DEFAULT);
+            } catch (IOException e) {
+                logger.error("获取数据错误2 ->", e);
+            }
+        } while (searchResponse.getHits().getHits().length != 0);
+        //清除滚屏
+        ClearScrollRequest clearScrollRequest = new ClearScrollRequest();
+        //也可以选择setScrollIds()将多个scrollId一起使用
+        clearScrollRequest.addScrollId(scrollId);
+        ClearScrollResponse clearScrollResponse = null;
+        try {
+            clearScrollResponse = client.clearScroll(clearScrollRequest,RequestOptions.DEFAULT);
+        } catch (IOException e) {
+            logger.warn("清除滚屏错误 ->", e);
+        }
+        boolean succeeded = false;
+        if (clearScrollResponse!=null){
+            succeeded = clearScrollResponse.isSucceeded();
+        }
+
+    }*/
+
+
+    }

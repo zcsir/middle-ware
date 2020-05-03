@@ -2,6 +2,8 @@ package com.elastic.search.controller;
 
 import com.elastic.search.model.RequestLog;
 import com.elastic.search.service.RequestLogService;
+import com.elastic.search.util.ElasticsearchUtil;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -80,5 +82,11 @@ public class RequestLogController {
      */
     public void findPage (){
 
+    }
+
+
+    @GetMapping("createIndex")
+    public Object createIndex(String index){
+        return ElasticsearchUtil.createIndex(index);
     }
 }
